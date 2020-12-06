@@ -3,17 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'element-theme-default';
-import {BrowserRouter, Route} from "react-router-dom";
-import MainPage from "./page/MainPage";
+import BasicRouter from './page/root/AppRoute';
 
 ReactDOM.render(
  /* <React.StrictMode>
     <App />
   </React.StrictMode>,*/
-    <BrowserRouter>
-        <Route exact path="/" component={MainPage} />
-    </BrowserRouter>,  
-  document.getElementById('root')
+/*   <HashRouter>
+        <Switch>
+            <Route exact path="/" component={MainPage}/>
+        </Switch>
+   </HashRouter>,*/
+   <BasicRouter />,
+   document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
