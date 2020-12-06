@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'element-theme-default';
+import {BrowserRouter, Route} from "react-router-dom";
+import MainPage from "./page/MainPage";
+
 ReactDOM.render(
-  <React.StrictMode>
+ /* <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>,*/
+    <BrowserRouter>
+        <Route exact path="/" component={MainPage} />
+    </BrowserRouter>,  
   document.getElementById('root')
 );
 
