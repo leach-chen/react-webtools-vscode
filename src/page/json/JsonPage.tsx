@@ -10,7 +10,7 @@ export default class JsonPage extends React.Component<IJsonPage>
     render() {
         return (
             <div className="JsonPage">
-                JSON Page2
+                JSON Page
             </div>
         )
     }

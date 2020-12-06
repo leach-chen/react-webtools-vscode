@@ -21,7 +21,7 @@ export default class MainPage extends React.Component<IBaseProps>
     
     render() {
         return (
-            <div className='main-layout'>
+            <div>
                 <Menu theme="dark" defaultActive="1" className="el-menu-demo" mode="horizontal" onSelect={this.onSelect.bind(this)}>
                     <Menu.Item index="1">Json</Menu.Item>
                     <Menu.Item index="2">Time</Menu.Item>
