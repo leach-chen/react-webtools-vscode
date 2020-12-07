@@ -15,6 +15,9 @@ export default class MainPage extends React.Component<IBaseProps>
         }else if (position == 2)
         {
             this.props.history?.push("timepage")
+        }else if (position == 2)
+        {
+            this.props.history?.push("codepage")
         }
         console.log(this.props.history)
     }

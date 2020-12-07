@@ -1,9 +1,9 @@
 import React from 'react';
 import {IBaseProps} from "../root/MainPage";
-import './TimePage.css';
+import './CodePage.css';
 import App from "../../App";
 
-export default class TimePage extends React.Component<IBaseProps>
+export default class CodePage extends React.Component<IBaseProps>
 {
     render() {
         return (

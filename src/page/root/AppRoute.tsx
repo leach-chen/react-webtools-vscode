@@ -3,6 +3,7 @@ import {HashRouter, Route, Switch} from "react-router-dom";
 import JsonPage from "../json/JsonPage";
 import TimePage from "../time/TimePage";
 import MainPage from "./MainPage";
+import CodePage from "../code/CodePage";
 
 const BasicRouter = () => (
     <HashRouter>
@@ -12,6 +13,7 @@ const BasicRouter = () => (
                         <Route exact path="/" component={JsonPage}/>
                         <Route exact path="/jsonpage" component={JsonPage}/>
                         <Route path="/timepage" component={TimePage}/>
+                        <Route path="/codepage" component={CodePage}/>
                     </MainPage>
                 )
             }/>
