@@ -29,7 +29,6 @@ import "codemirror/mode/javascript/javascript";//for json
 import "codemirror/addon/lint/lint";//for json
 import "codemirror/addon/lint/json-lint"; //for json
 import "codemirror/addon/lint/lint.css"; //for json
-import {Button} from "element-react/next";
 import {Message, Switch} from "element-react";
 
 
@@ -59,6 +58,7 @@ export default class JsonPage extends React.Component<IJsonPage>
     }
     state = {
         data:'{ \n      "1":"Json will auto format",\n\n      "2":"You can click switch button close auto format",\n\n      "3":"You can use (Shift+T) format by yourself" \n}',
+        shortcutData:'{ \n      "1":"Json will auto format",\n\n      "2":"You can click switch button close auto format",\n\n      "3":"You can use (Shift+T) format by yourself" \n}',
         isAutoFormat:true
     }
 
@@ -67,18 +67,20 @@ export default class JsonPage extends React.Component<IJsonPage>
             let obj = JSON.parse(value)
             this.setState({"data":JSON.stringify(obj, null, 6)})
         }catch (e) {
+            
         }
     }
 
     updateDataHandle(value: any){
         try {
-            value = value.replace(new RegExp(",", "gm"), ",\r\n");
+            this.setState({"data":value})  //此处需要设置一次，否则连续粘贴两次异常数据，数据不会更新
             let obj = JSON.parse(value)
             this.setState({"data":JSON.stringify(obj, null, 6)})
         }catch (e) {
-            //console.log(e)    
             try {
                 value = value.replace(new RegExp(",", "gm"), ",\r\n");
+                this.setState({"data":value})
+                this.setState({"shortcutData":value})
                 jsonlint.parse(value);
             } catch (e) {
                 Message.error(e.toString());
@@ -86,7 +88,8 @@ export default class JsonPage extends React.Component<IJsonPage>
         }
     }
     
-    
+    //{ "sites": [ { "name":"菜鸟教程" , "url":"www.runoob.com" }, { "name":"google" , "url":"www.google.com" },{ "name":"微博" , "url":"www.weibo.com" } ] } 正常测试数据，连续粘贴两次
+    //{ "sites": [ { "name":"菜鸟教程" , "url":"www.runoob.com" }, { "name":"google" , "url":"www.google.com" }{ "name":"微博" , "url":"www.weibo.com" } ] }  异常测试数据，连续粘贴两次
     
     render() {
         const {data}=this.state
@@ -101,6 +104,10 @@ export default class JsonPage extends React.Component<IJsonPage>
                     style={{zIndex:10,position:"absolute",right:50,top:80}}
                     onChange={(value)=>{
                         this.setState({isAutoFormat:value})
+                        if(!value)
+                        {
+                            Message.info("use (Shift+T) format");
+                        }
                     }}
                 >
                 </Switch>
@@ -131,15 +138,25 @@ export default class JsonPage extends React.Component<IJsonPage>
                             "F8":function (editor:any) {
                                 editor.redo();
                             },//Redo
-                            "Shift-T":(editor:any) => {
-                                this.updateDataHandle(this.state.data)
+                            "Shift-T":(editor:any,data:any) => {
+                                this.updateDataHandle(this.state.shortcutData)
                             },//Redo
                         },
                         matchBrackets: true,  //括号匹配，光标旁边的括号都高亮显示
                         autoCloseBrackets: true //键入时将自动关闭()[]{}''""
                     }}
                     onChange={(editor, data, value) => {
-                        this.setState({"data":value}) //更新变量的值，否则下次粘贴相同数据不会刷新
+                        this.setState({shortcutData:value}) //更新变量的值，否则下次粘贴相同数据不会刷新,主要用于快捷键格式化
+                        try {
+                            let obj = JSON.parse(value)
+                            let str = JSON.stringify(obj, null, 6)
+                            if(str == this.state.data)//如果当前state data里面的值和要格式化的值一致，则更新state里面的值，否则复制相同数据进入不会更新
+                            {
+                                this.setState({"data":value}) //不能每次都设置该值，否则数据变化的时候会导致光标变到最后
+                            }
+                        }catch (e) {
+                            
+                        }
                         if(this.state.isAutoFormat) {
                             if (this.timeObj) {
                                 clearTimeout(this.timeObj)
