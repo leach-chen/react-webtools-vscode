@@ -25,11 +25,26 @@ import 'codemirror/addon/fold/brace-fold.js';
 import 'codemirror/addon/fold/comment-fold.js';
 import 'codemirror/addon/edit/closebrackets';
 
+//json校验
 import "codemirror/mode/javascript/javascript";//for json
 import "codemirror/addon/lint/lint";//for json
 import "codemirror/addon/lint/json-lint"; //for json
 import "codemirror/addon/lint/lint.css"; //for json
+
+//搜索功能
+import 'codemirror/addon/scroll/annotatescrollbar.js'
+import 'codemirror/addon/search/matchesonscrollbar.js'
+import 'codemirror/addon/search/match-highlighter.js'
+import 'codemirror/addon/search/jump-to-line.js'
+
+import 'codemirror/addon/dialog/dialog.js'
+import 'codemirror/addon/dialog/dialog.css'
+import 'codemirror/addon/search/searchcursor.js'
+import 'codemirror/addon/search/search.js'
+
+
 import {Message, Switch} from "element-react";
+
 
 
 declare global {
@@ -57,8 +72,8 @@ export default class JsonPage extends React.Component<IJsonPage>
        
     }
     state = {
-        data:'{ \n      "1":"Json will auto format",\n\n      "2":"You can click switch button close auto format",\n\n      "3":"You can use (Shift+T) format by yourself" \n}',
-        shortcutData:'{ \n      "1":"Json will auto format",\n\n      "2":"You can click switch button close auto format",\n\n      "3":"You can use (Shift+T) format by yourself" \n}',
+        data:'{ \n      "1":"Json will auto format",\n\n      "2":"You can click switch button close auto format",\n\n      "3":"You can use (Shift+T) format by yourself",\n\n      "4":"You can use (Ctrl+F) search" \n}',
+        shortcutData:'{ \n      "1":"Json will auto format",\n\n      "2":"You can click switch button close auto format",\n\n      "3":"You can use (Shift+T) format by yourself",\n\n      "4":"You can use (Ctrl+F) search" \n}',
         isAutoFormat:true
     }
 
@@ -76,6 +91,7 @@ export default class JsonPage extends React.Component<IJsonPage>
             this.setState({"data":value})  //此处需要设置一次，否则连续粘贴两次异常数据，数据不会更新
             let obj = JSON.parse(value)
             this.setState({"data":JSON.stringify(obj, null, 6)})
+            Message.success("Format success");
         }catch (e) {
             try {
                 value = value.replace(new RegExp(",", "gm"), ",\r\n");
