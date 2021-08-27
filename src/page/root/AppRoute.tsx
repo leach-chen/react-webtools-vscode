@@ -4,6 +4,7 @@ import JsonPage from "../json/JsonPage";
 import TimePage from "../time/TimePage";
 import MainPage from "./MainPage";
 import CodePage from "../code/CodePage";
+import PreviewPage from "../preview/PreviewPage";
 
 const BasicRouter = () => (
     <HashRouter>
@@ -12,6 +13,7 @@ const BasicRouter = () => (
                     <MainPage {...props}>
                         <Route exact path="/" component={JsonPage}/>
                         <Route exact path="/jsonpage" component={JsonPage}/>
+                        <Route exact path="/previewpage" component={PreviewPage}/>
                         <Route path="/timepage" component={TimePage}/>
                         <Route path="/codepage" component={CodePage}/>
                     </MainPage>

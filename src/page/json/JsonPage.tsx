@@ -98,7 +98,7 @@ export default class JsonPage extends React.Component<IJsonPage>
                 this.setState({"data":value})
                 this.setState({"shortcutData":value})
                 jsonlint.parse(value);
-            } catch (e) {
+            } catch (e:any) {
                 Message.error(e.toString());
             }
         }
