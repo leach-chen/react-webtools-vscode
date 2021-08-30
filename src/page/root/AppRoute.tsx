@@ -14,8 +14,8 @@ const BasicRouter = () => (
                         <Route exact path="/" component={JsonPage}/>
                         <Route exact path="/jsonpage" component={JsonPage}/>
                         <Route exact path="/previewpage" component={PreviewPage}/>
-                        <Route path="/timepage" component={TimePage}/>
-                        <Route path="/codepage" component={CodePage}/>
+                        <Route  path="/timepage" component={TimePage}/>
+                        <Route  path="/codepage" component={CodePage}/>
                     </MainPage>
                 )
             }/>

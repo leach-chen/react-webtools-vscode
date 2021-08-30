@@ -1,8 +1,26 @@
 
 .PreviewPage{
-    background-color: #282c34;
+    background-color: #ffffff;
     min-height: 100vh;
-    display: flex;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: #000000;
+    height: 100%;
+}
+
+.mdContent{
+    border: 1px solid #D0D7DE;
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.el-menu-vertical-demo{
+    min-height: 100vh;
+}
+
+.cl-col1{
+    background-color: #EEF1F6;
+}
+
+.mdContent code{
+    color: #222222;
 }
