@@ -22,11 +22,12 @@ export interface IPreviewState{
     htmlContent:string;
     mdContent:string;
     previewObject:any;
+    menuIndex:string;
 }
 
 export default class PreviewPage extends React.Component<IPreviewPage,IPreviewState>
 {
-
+    private lastTime = 0
     constructor(props:IPreviewPage,state:IPreviewState)
     {
         super(props)
@@ -36,7 +37,8 @@ export default class PreviewPage extends React.Component<IPreviewPage,IPreviewSt
             isMDContent:false, //是否是markdown内容
             htmlContent:"",//html 内容
             mdContent:"",//markdown 内容
-            previewObject:undefined //渲染数据
+            previewObject:undefined, //渲染数据
+            menuIndex:"0" //侧边菜单索引
         }
 
     }
@@ -92,6 +94,11 @@ export default class PreviewPage extends React.Component<IPreviewPage,IPreviewSt
     }
 
     onSelect = (index:any)=>{
+        var nowTime = Date.now();
+        if((nowTime - this.lastTime)<100){
+            return
+        }
+        this.lastTime = nowTime;
         let obj = this.state.previewObject[index]
         if(obj.type == "html")
         {
@@ -116,6 +123,7 @@ export default class PreviewPage extends React.Component<IPreviewPage,IPreviewSt
                 }
             }
         }
+        this.setState({menuIndex:index})
     }
     
     _renderLeftMenu = ()=> {
@@ -124,7 +132,7 @@ export default class PreviewPage extends React.Component<IPreviewPage,IPreviewSt
             <Layout.Row>
                 <Layout.Col span="3" className="cl-col1">
                     <div className="grid-content bg-purple">
-                        <Menu mode="vertical" defaultActive="0" className="el-menu-vertical-demo" onSelect = {this.onSelect}>
+                        <Menu mode="vertical" defaultActive={this.state.menuIndex} className="el-menu-vertical-demo" onSelect = {this.onSelect}>
                             <Menu.ItemGroup title="">
                                {
                                     this.state.previewObject?.map((obj: any, position: number)=>{
