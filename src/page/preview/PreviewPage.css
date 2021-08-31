@@ -1,6 +1,6 @@
 
 .PreviewPage{
-    background-color: #ffffff;
+    background-color: #282c34;
     min-height: 100vh;
     font-size: calc(10px + 2vmin);
     color: #000000;
@@ -9,18 +9,30 @@
 
 .mdContent{
     border: 1px solid #D0D7DE;
-    border-radius: 6px;
+    /*border-radius: 6px;*/
     padding: 20px;
+    background-color: white;
+    min-height: 100vh;
+}
+
+.mdContent code{
+    color: #222222;
+}
+
+.htmlContent{
+    border: 1px solid #D0D7DE;
+    background-color: white;
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 40px;
 }
 
 .el-menu-vertical-demo{
     min-height: 100vh;
+    padding-bottom: 40px;
 }
 
 .cl-col1{
     background-color: #EEF1F6;
 }
 
-.mdContent code{
-    color: #222222;
-}

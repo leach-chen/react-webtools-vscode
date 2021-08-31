@@ -54,11 +54,11 @@ export default class PreviewPage extends React.Component<IPreviewPage,IPreviewSt
                 { previewObject:
                         [
                             /*{"网址导航": '<html>\r\n<head>\r\n  \r\n</head>\r\n<body>\r\n<div>\r\n   aaaaaaaaa\r\n</div>\r\n</body>\r\n\r\n</html>\r\n',"type":"html"},*/
-                            {"页面配置": '# html & markdown文件预览\n' +
+                            {"页面配置": '# html & markdown文件预览配置\n' +
                                     '\n' +
                                     '## 说明\n' +
                                     '\n' +
-                                    '本页面提供html、markdown类型文件的预览功能，\n' +
+                                    '本页面提供本地html、markdown类型文件的批量预览管理功能，\n' +
                                     '当你看到本页面时，说明还未进行配置\n' +
                                     '\n' +
                                     '## 配置步骤\n' +
@@ -120,7 +120,8 @@ export default class PreviewPage extends React.Component<IPreviewPage,IPreviewSt
     
     _renderLeftMenu = ()=> {
         return (
-            <Layout.Row style={{display:"flex",justifyContent:"center"}}>
+            /*<Layout.Row style={{display:"flex",justifyContent:"center"}}>*/
+            <Layout.Row>
                 <Layout.Col span="3" className="cl-col1">
                     <div className="grid-content bg-purple">
                         <Menu mode="vertical" defaultActive="0" className="el-menu-vertical-demo" onSelect = {this.onSelect}>
@@ -145,30 +146,34 @@ export default class PreviewPage extends React.Component<IPreviewPage,IPreviewSt
                         </Menu>
                     </div>
                 </Layout.Col>
-                <Layout.Col span="15">
-                    {
-                        !this.state.isEmptyContent && this.state.isHtmlContent && this._renderHtml()
-                    }
-                    {
-                        !this.state.isEmptyContent && this.state.isMDContent && this._renderMD()
-                    }
-                </Layout.Col>
+                {
+                    !this.state.isEmptyContent && this.state.isHtmlContent && this._renderHtml()
+                }
+                {
+                    !this.state.isEmptyContent && this.state.isMDContent && this._renderMD()
+                }
             </Layout.Row>
         )
     }
     
-
+    //Layout.Col100%是24
     _renderHtml = ()=> {
         return (
-            <div id="previewContent" dangerouslySetInnerHTML={{__html:this.state.htmlContent}}></div>
+            <Layout.Col span="15">
+                <div className="htmlContent">
+                     <div dangerouslySetInnerHTML={{__html:this.state.htmlContent}}></div>
+                </div>    
+            </Layout.Col>
         )
     }
 
     _renderMD = ()=> {
         return (
-            <div className="mdContent">
-                <ReactMarkdown children={this.state.mdContent} className = "markdown-body"/>
-            </div>
+            <Layout.Col span="15">
+                <div className="mdContent">
+                    <ReactMarkdown children={this.state.mdContent} className = "markdown-body"/>
+                </div>
+            </Layout.Col>
         )
     }
     

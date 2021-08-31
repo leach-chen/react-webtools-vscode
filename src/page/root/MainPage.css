@@ -1,0 +1,10 @@
+
+.el-tabs__header{
+    margin: 0px;
+}
+
+.el-tabs__nav-wrap{
+    background-color: #1f4661;
+    padding: 5px;
+    color: white;
+}
