@@ -68,14 +68,14 @@ export default class PreviewPage extends React.Component<IPreviewPage,IPreviewSt
                                     '2：在里面配置类似如下内容：\n' +
                                     '{\n' +
                                     '  "previewPage": [\n' +
-                                    '    {"测试页面1": "zdevelop/a.html"},\n' +
-                                    '    {"测试页面2": "zdevelop/b.md"},\n' +
+                                    '    {"TestTitle1": "testFolder1/a.html"},\n' +
+                                    '    {"TestTitle2": "testFolder2/b.md"},\n' +
                                     '  ]\n' +
                                     '}\n' +
                                     '\n' +
                                     '3:文件预览只支持".html"、".md"后缀类型的文件\n' +
                                     '\n' +
-                                    '4：在项目根目录下创建zdevelop文件夹，并且在该目录下创建a.html,b.md两个文件。\n' +
+                                    '4：在项目根目录下创建testFolder1、testFolder2文件夹，并且分别在对应目录下创建a.html,b.md文件。\n' +
                                     '（文件夹及文件名称可任意，要与步骤2配置中的对应）\n' +
                                     '\n' +
                                     '按照上述步骤配置，则可对指定目录下的文件进行预览管理\n' +
