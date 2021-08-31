@@ -167,7 +167,7 @@ export default class PreviewPage extends React.Component<IPreviewPage,IPreviewSt
     //Layout.Col100%是24
     _renderHtml = ()=> {
         return (
-            <Layout.Col span="15">
+            <Layout.Col span="21">
                 <div className="htmlContent">
                      <div dangerouslySetInnerHTML={{__html:this.state.htmlContent}}></div>
                 </div>    
@@ -177,7 +177,7 @@ export default class PreviewPage extends React.Component<IPreviewPage,IPreviewSt
 
     _renderMD = ()=> {
         return (
-            <Layout.Col span="15">
+            <Layout.Col span="21">
                 <div className="mdContent">
                     <ReactMarkdown children={this.state.mdContent} className = "markdown-body"/>
                 </div>
