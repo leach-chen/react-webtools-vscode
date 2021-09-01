@@ -4,11 +4,14 @@ import {IBaseProps} from "../root/MainPage";
 import './PreviewPage.css';
 import './github-markdown.css';
 import {Layout, Menu} from 'element-react';
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 
 //https://jingyan.baidu.com/article/6b18230972c3e6fb59e15929.html
 //https://www.bootcdn.cn/github-markdown-css
 //https://github.com/remarkjs/react-markdown
 //https://www.npmjs.com/package/react-markdown
+//https://gitee.com/uiw/react-markdown-preview
 
 export interface IPreviewPage extends IBaseProps{
     previewObject:any;
@@ -179,7 +182,7 @@ export default class PreviewPage extends React.Component<IPreviewPage,IPreviewSt
         return (
             <Layout.Col span="21">
                 <div className="mdContent">
-                    <ReactMarkdown children={this.state.mdContent} className = "markdown-body"/>
+                    <ReactMarkdown children={this.state.mdContent} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} className = "markdown-body"/>
                 </div>
             </Layout.Col>
         )
