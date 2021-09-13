@@ -105,11 +105,11 @@ export default class TimePage extends React.Component<IBaseProps,ITimePageState>
         {
             this.setState({tranValueStrMs:TimeUtil.timestrToTimems(this.state.inputValueTimeMs)})
         }else{
-            this.setState({tranValueS:""})
+            this.setState({tranValueStrMs:""})
         }
         if(this.state.inputValueTimeS)
         {
-            this.setState({tranValueStrS:parseInt(""+(TimeUtil.timestrToTimems(this.state.inputValueTimeMs) / 1000))})
+            this.setState({tranValueStrS:parseInt(""+(TimeUtil.timestrToTimems(this.state.inputValueTimeS) / 1000))})
         }else{
             this.setState({tranValueStrS:""})
         }
